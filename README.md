@@ -56,45 +56,46 @@ if we change the content and commit the changes and come to the Jenkins server i
 
 12.	This is the code which builds the pipelines whenever we change the changes in branches, we have to paste the pollSCM code in your Jenkins file.
 
-                                        pipeline {
-                                            agent any
-                                            tools {
-                                                maven "mvn"
-                                            }
-                                            
-                                            triggers {
-                                                pollSCM('* * * * *') // Schedule SCM polling at a specified interval (every minute in this example)
-                                            }
-                                            stages {
-                                                stage('Checkout') {
-                                                    steps {
-                                                        git branch: 'main', url: 'https://github.com/iamkishore0/maven_project.git'
-                                                        // Check out your source code from your SCM repository here
-                                                        // For example, you can use 'git' for Git repositories
-                                                        // You may need to configure your SCM credentials
-                                                        // For Git, it would be something like 'checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/your/repo.git']]])'
-                                                    }
-                                                }
-                                                stage('Build ') {
-                                                    steps {
-                                                        sh "mvn compile"
-                                                        // Add your build steps here
-                                                    }
-                                                }
-                                                stage('Test') {
-                                                    steps {
-                                                        sh 'mvn test'
-                                                        // Add your testing steps here
-                                                    }
-                                                }
-                                                stage('Deploy') {
-                                                    steps {
-                                                        sh 'mvn install'
-                                                        // Add your deployment steps here
-                                                    }
-                                                }
-                                            }
-                                        }
+         pipeline {
+         agent any
+         tools {
+             maven "mvn"
+         }
+         
+         triggers {
+             pollSCM('* * * * *') // Schedule SCM polling at a specified interval (every minute in this example)
+         }
+         stages {
+             stage('Checkout') {
+                 steps {
+                     git branch: 'main', url: 'https://github.com/iamkishore0/maven_project.git'
+                     // Check out your source code from your SCM repository here
+                     // For example, you can use 'git' for Git repositories
+                     // You may need to configure your SCM credentials
+                     // For Git, it would be something like 'checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/your/repo.git']]])'
+                 }
+             }
+             stage('Build ') {
+                 steps {
+                     sh "mvn compile"
+                     // Add your build steps here
+                 }
+             }
+             stage('Test') {
+                 steps {
+                     sh 'mvn test'
+                     // Add your testing steps here
+                 }
+             }
+             stage('Deploy') {
+                 steps {
+                     sh 'mvn install'
+                     // Add your deployment steps here
+                 }
+              }
+          }
+        }
+
 14.	Multibranch pipelines in Jenkins are an efficient way to handle multiple branches within a single pipeline project. They automatically discover branches in a repository and create corresponding Jenkins pipelines. This feature simplifies the management of continuous integration and delivery for various branches.
 
 Advantages of Multibranch Pipelines:
