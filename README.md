@@ -6,16 +6,17 @@ STEPS TO CREATE MULTI BRANCH PIPELINE WITH FOLDER:
  
 2.	Install the Jenkins and its requirements in that instance using Jenkins installation code in Jenkins documentary for centos 7.
 
-sudo yum install wget -y
+        sudo yum install wget -y
 
-sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+        sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+        sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 
-yum install fontconfig java-11-openjdk -y
-yum install jenkins -y
-service jenkins start
-systemctl enable jenkins
-service jenkins status
+        yum install fontconfig java-11-openjdk -y
+        yum install jenkins -y
+        service jenkins start
+        systemctl enable jenkins
+        service jenkins status
+
 3.	After execution of the above script, enable the http (8080) port in your Jenkins server security group then login into Jenkins with your ip address like, give your <public_ip:8080> on your browser and give the authentication password, which you can find it in path 
  < /var/jenkins_home/secrets/initialAdminPassword > of Jenkins server give that password and login to the Jenkins webserver.
 4.	Install the required plugins for our project and create a new folder by clicking on new item and give a name to that folder 
@@ -32,7 +33,7 @@ click on the folder option as shown in the below fig, then it will create a fold
 9.	Enable scan webhook option in Scan Multibranch Pipeline Triggers, give the URL of webhook in GitHub repository setting. This option helps to build the pipeline when ever we changed and commit the repository file. Instead of clicking scan option every time just give this option for automatic build of multibranch pipeline. These are done as shown in below figures.
             ![image](https://github.com/sainakka5/MULTIBRANCH_PIPELINE_WITH_BUILD_AUTOMATION_CODE/assets/136338958/37bd1b1f-57c2-47fa-a080-9da1ee0b29a0)
 
-         ![image](https://github.com/sainakka5/MULTIBRANCH_PIPELINE_WITH_BUILD_AUTOMATION_CODE/assets/136338958/009de06a-8f41-4024-9296-228ac93f176d)
+       ![image](https://github.com/sainakka5/MULTIBRANCH_PIPELINE_WITH_BUILD_AUTOMATION_CODE/assets/136338958/009de06a-8f41-4024-9296-228ac93f176d)
 
      
 10.	In the below fig there is a code to replace the webhook tool called poll scm it takes time intervals to build the change in branch.
